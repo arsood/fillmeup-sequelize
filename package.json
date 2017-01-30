@@ -1,0 +1,11 @@
+{
+  "name": "fillmeup-sequelize",
+  "version": "1.0.0",
+  "description": "FillMeUp Sequelize is a utility to manage seed data with the Sequelize ORM.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arun Sood",
+  "license": "MIT"
+}
