@@ -27,7 +27,7 @@ fillmeup.run(models, __dirname + "/seed_data");
 - FillMeUp-Sequelize expects your seed data in a specific format.
 - Seed data must follow this structure:
 
-```json
+```
 {
 	"Model Name": [Array of objects that you want added to the database]
 }
