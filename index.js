@@ -16,6 +16,9 @@ FillMeUp.run = (models, seed_path) => {
         .then(() => {
             helpers
             .bulk_add(models, model, seed_json);
+        })
+        .catch(() => {
+            console.log(`FillMeUp -> There was a problem clearing the ${model} model`);
         });
     });
 }
