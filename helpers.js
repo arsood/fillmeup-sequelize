@@ -17,10 +17,10 @@ helpers.bulk_add = (models, model, data) => {
     return new Promise((resolve, reject) => {
         let ops = [];
 
+        console.log(`CURRENTLY SEEDING: ${model}`);
+
         data[model].forEach((obj) => {
             ops.push((cb) => {
-                console.log(`CURRENTLY SEEDING: ${model}`);
-
                 models[model]
                 .create(obj)
                 .then(() => {
