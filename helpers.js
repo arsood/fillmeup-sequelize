@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const async = require("async");
 
 let helpers = {};
 
@@ -13,9 +14,33 @@ helpers.clear_model = (models, model) => {
 
 //Add multiple objects to DB from array
 helpers.bulk_add = (models, model, data) => {
-    return data[model].forEach((obj) => {
-        models[model]
-        .create(obj);
+    return new Promise((resolve, reject) => {
+        let ops = [];
+
+        data[model].forEach((obj) => {
+            ops.push((cb) => {
+                console.log(`CURRENTLY SEEDING: ${model}`);
+
+                models[model]
+                .create(obj)
+                .then(() => {
+                    cb();
+                    return null;
+                })
+                .catch((err) => {
+                    cb(err);
+                    return null;
+                });
+            });
+        });
+
+        async.series(ops, (err) => {
+            if (err) {
+                reject(err, `Error seeding the ${model} model`);
+            } else {
+                resolve();
+            }
+        });
     });
 }
 
